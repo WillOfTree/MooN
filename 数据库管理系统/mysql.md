@@ -1,4 +1,6 @@
-# 变量类型
+# 数据库语法
+
+## 变量类型
 
 | 变量类型         | 含义                                     |
 |:------------:|:-------------------------------------- |
@@ -25,7 +27,7 @@
 | unique       | 唯一                                     |
 | check        | sex char(2) check(sex in(1,2)          |
 
-# 模式
+##  模式
 
 ```shell
 create schema <模式名> authorization <用户名> [<视图> | <表定义句> | <授权>]
@@ -44,7 +46,7 @@ create table user( id int primary key , age int ,name varchar(255));
 drop schema <模式名> <cascade | restrict>
 ```
 
-# 表
+## 表
 
 ```shell
 create table <表名>(<属性>)
@@ -86,7 +88,7 @@ alter table user add S_time date
 alter table user alter sage int
 ```
 
-# 索引
+## 索引
 
 ```shell
 # CLUSTER :聚簇索引: 物理顺序与索引的逻辑顺序相同。⽐如书 
@@ -101,7 +103,7 @@ alter index SCno rename to SCNO
 drop index <索引名>
 ```
 
-# 查询
+## 查询
 
 ```shell
 # 查询所有
@@ -117,11 +119,11 @@ select uname from table T
 select uname from table as T
 ```
 
-## where条件查询
+### where条件查询
 
-![](D:\A-SYS-reject\whiteZe\文档笔记\数据库管理系统\images\4.png)
+<img src="dataLib/4.png" style="zoom:75%;" />
 
-## 聚合函数使用
+### 聚合函数使用
 
 加上DISTINCT是去除列⾥⾯重复的 来计算
 
@@ -139,7 +141,7 @@ select MIN(price) from table
 #
 ```
 
-# 分组查询
+## 分组查询
 
 GROUP BY分组 ,如果要进⾏筛选,请使⽤Having
 
@@ -150,7 +152,7 @@ select title from edu_course GROUP by title
 select title from edu_course group by title Having title="ssss"
 ```
 
-# 连接
+## 连接
 
 ```shell
 # 等值连接，非等值连接，以where为关键字
@@ -163,13 +165,13 @@ select c1.ver,c2.view from edu c1, edu c2 where c1.ver=c2.view
 select * from student left outer join SC on(student.id=SC.id)
 ```
 
-# 多表查询
+## 多表查询
 
 ```shell
 select c.id id,* from edu_c c,edu_a cp where c.id=cp.id and c.id=cp.id
 ```
 
-# 嵌套查询
+## 嵌套查询
 
 ```shell
 select c.title from edu_c c where c.title in (
@@ -177,9 +179,9 @@ select c.title from edu_c c where c.title in (
 )
 ```
 
-# 带有any all的子查询
+## 带有any all的子查询
 
-![](D:\A-SYS-reject\whiteZe\文档笔记\数据库管理系统\images\5.png)
+<img src="dataLib/5.png" style="zoom:75%;" />
 
 ```shell
 # >any 大于最小值
@@ -189,7 +191,7 @@ select * from edu_course where price >Any (
 )
 ```
 
-# 带EXISTS的子查询
+## 带EXISTS的子查询
 
 ```shell
 # exists后面的子查询有值返回1，没有返回0
@@ -199,9 +201,9 @@ select Sname from student where exists(
 ) 
 ```
 
-# 集合查询
+## 集合查询
 
-## 并 UNION
+### 并 UNION
 
 ```shell
 select * from student where sdept="cs" 
@@ -209,7 +211,7 @@ UNION
 select * from student where sage<=19
 ```
 
-## 交 INTERSECT
+### 交 INTERSECT
 
 ```shell
 select * from student where sdept = "cs" 
@@ -217,7 +219,7 @@ INTERSECT
 select * from student where sage <19
 ```
 
-## 差 EXCEPT
+### 差 EXCEPT
 
 ```shell
 select * from student where sdept="CS"
@@ -225,7 +227,7 @@ EXCEPT
 select * from student where sage<19
 ```
 
-# 插入
+## 插入
 
 ```shell
 insert into <表名> [(字段列表)] values (值)
@@ -237,7 +239,7 @@ insert into student values(1, liming, 19)
 insert into student values(1, liming, 19),(2,zhangsan, 18)
 ```
 
-# 修改
+## 修改
 
 ```shell
 update <表名> set <属性名>=<值>
@@ -246,7 +248,7 @@ update <表名> set <属性名>=<值>
 update stu set age=33, sex=1
 ```
 
-# 删除
+## 删除
 
 ```shell
 delete from <表名> [where 条件]
@@ -255,7 +257,7 @@ delete from <表名> [where 条件]
 delete from stu where id=100;
 ```
 
-# 视图
+## 视图
 
 视图(VIEW)也被称作虚表，即虚拟的表，是⼀组数据的逻辑表示,其本质是对应于⼀条SELECT语句，结果集被赋予⼀个名字，即视图名字。
 
@@ -288,7 +290,7 @@ update IS set name=“123” where id = 3
 update student set name="123" where id=3
 ```
 
-# 自主存取控制方法
+## 自主存取控制方法
 
 Reference 允许创建外键
 
@@ -325,7 +327,7 @@ grant CEO to user
 grant CEO to user with admin option
 ```
 
-# 审计
+## 审计
 
 ```shell
 # 对修改SC数据的操作进⾏审计  
@@ -334,7 +336,7 @@ audit update on SC
 noaudit update on SC
 ```
 
-# 断言
+## 断言
 
 只有check条件为真才执行
 
@@ -353,7 +355,7 @@ create assertion A check(
 drop assertion A
 ```
 
-# 触发器
+## 触发器
 
 行级触发器，一次只更新一个元组，每一行触发一次
 
