@@ -105,7 +105,7 @@ for(i=1;i<=n;i++)
 
 - 若将2个链表合并为升序（与原来的次序相同），则最坏的时间复杂度M$\times$N
 
-  <img src="dataStruct\合并链表.png" style="zoom:67%;" />
+  <img src=".\dataStruct\合并链表.png" style="zoom:67%;" />
 
 ## 队列/栈
 
